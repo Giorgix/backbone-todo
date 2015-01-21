@@ -28,24 +28,22 @@ var Todo = Backbone.Model.extend({
 
   });
 
-  var todo1 = new Todo();
-
-  console.log(todo1.get('title'));
-  console.log(todo1.get('completed'));
-
-        
-  // Set map of attributes
-  todo1.set({
-    title: 'Set through Model.set().',
-    completed: true
+  var TodosCollection = Backbone.Collection.extend({
+    model: Todo
   });
-  console.log(todo1.get('title'));
-  console.log(todo1.get('completed'));
-
-  todo1.setTitle('GO fuck yourself');
-  console.log(todo1.get('title'));
   
-  var todo2 = new Todo();
-  todo2.set('completed', true, {validate: true});
+  var todo1 = new Todo({title: 'Go to jamaica.'});
+  var todo2 = new Todo({title: 'Go to hawaii.', id: 5});
+  var todo3 = new Todo({title: 'Go to china.'});
 
-  console.log(todo2.toJSON());
+  var todos = new TodosCollection([todo1, todo2]);
+  console.log("collection size: " + todos.length);  
+  
+  todos.add(todo3);  
+  console.log("collection size: " + todos.length);  
+
+  todos.remove(todo3);
+  console.log("collection size: " + todos.length);  
+
+  var todo4 = todos.get(5);
+  console.log(todo4 === todo2);
