@@ -2,4 +2,37 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  section(id="todoapp")
+    header(id="header")
+      h1 todos
+      input(id="new-todo" placeholder="What needs to be done?" autofocus)
+    section(id="main")
+      input(id="toggle-all" type="checkbox")
+      label(for="toggle-all") MArk all as complete
+      ul(id="todo-list")
+    footer(id="footer")
+  div(id="info")
+    p Double-click to edit a todo
+    p Written by giorgix
+
+  script(type="text/template" id="item-template")
+    div(class="view")
+      input(class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>)
+      label <%= title %>
+      button(class="destroy")
+    input(class="edit" value="<%= title %>")
+  script(type="text/template" id="stats-template")
+    span(id="todo-count")
+      strong <%= remaining %>
+      <%= remaining === 1 ? 'item' : 'items' %> left
+    ul(id="filters")
+      li
+        a(class="selected" href="#") All
+      li
+        a(href="#/active") Active
+      li
+        a(href="#/completed") Completed
+    <% if (completed) { %>
+    button(id="clear-completed") Clear completed (<%= completed %>)
+    <% } %>
+
