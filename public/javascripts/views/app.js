@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.Appview = Backbone.View.extend({
+app.AppView = Backbone.View.extend({
   el: '#todoapp',
 
   statsTemplate: _.template( $('#stats-template').html() ),
@@ -51,7 +51,7 @@ app.Appview = Backbone.View.extend({
     this.allCheckbox.checked = !remaining;
   },
 
-  addone: function(todo) {
+  addOne: function(todo) {
     var view = new app.TodoView({ model: todo });
     $('#todo-list').append( view.render().el );
   },
@@ -88,7 +88,7 @@ app.Appview = Backbone.View.extend({
 
   clearCompleted: function() {
     _.invoke(app.Todos.completed(), 'destroy');
-    return false
+    return false;
   },
 
   toggleAllCompleted: function() {
