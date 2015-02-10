@@ -11,8 +11,8 @@ app.AppView = Backbone.View.extend({
     'click #toggle-all': 'toggleAllComplete'
   },
 
-  initalize: function() {
-    this.allCheckbox = this.$('#toogle-all')[0];
+  initialize: function() {
+    this.allCheckbox = this.$('#toggle-all')[0];
     this.$input = this.$('#new-todo');
     this.$footer = this.$('#footer');
     this.$main = this.$('#main');
